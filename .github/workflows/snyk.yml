@@ -2,6 +2,7 @@ name: GO Snyk Check
 on: push
 jobs:
   security:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
