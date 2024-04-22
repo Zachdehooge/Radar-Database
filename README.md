@@ -14,6 +14,9 @@
 1. Download Github repo
 2. Run `.exe` file
 
+# Issues
+* Be sure to open an issue and I will be more than happy to fix it!
+
 # Roadmap
 1. Give user the option to download all of the current days RADNEX archive without needing to prompt for time frame
 2. More to come...
