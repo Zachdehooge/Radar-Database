@@ -1,95 +1,60 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
-	"net/url"
 	"os"
-	"strings"
-)
-
-var (
-	fileName    string
-	fullURLFile string
-
-	month     string
-	day       string
-	year      string
-	radar     string
-	timeStart int
-	timeEnd   int
+	"path/filepath"
 )
 
 func main() {
+	var month, day, year, radar string
+	var timeStart, timeEnd int
 
-	fmt.Println("Enter Month: ")
-	reader := bufio.NewReader(os.Stdin)
-	month, err := reader.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
+	fmt.Print("Enter Month: ")
+	fmt.Scanln(&month)
+	// fmt.Println("d3 =", month)
+
+	fmt.Print("Enter Day: ")
+	fmt.Scanln(&day)
+	// fmt.Println("d3 =", day)
+
+	fmt.Print("Enter Year: ")
+	fmt.Scanln(&year)
+	// fmt.Println("d3 =", year)
+
+	fmt.Print("Enter Radar: ")
+	fmt.Scanln(&radar)
+	// fmt.Println("d3 =", timeNow)
+
+	fmt.Print("Time Start in Zulu (HHMMSS): ")
+	fmt.Scanln(&timeStart)
+
+	fmt.Print("Time End in Zulu (HHMMSS): ")
+	fmt.Scanln(&timeEnd)
+
+	for x := timeStart; x <= timeEnd; x++ {
+		timeComb := fmt.Sprintf("%06d", x)
+
+		url := fmt.Sprintf("https://noaa-nexrad-level2.s3.amazonaws.com/%s/%s/%s/%s/%s%s%s%s_%s_V06", year, month, day, radar, radar, year, month, day, timeComb)
+
+		folderLocation := fmt.Sprintf("C:\\Coding Projects\\Go\\Radar_Database\\%s_%s_%s_%s", day, month, year, radar)
+		if _, err := os.Stat(folderLocation); os.IsNotExist(err) {
+			os.MkdirAll(folderLocation, 0755)
+		}
+
+		resp, err := http.Get(url)
+		if err == nil && resp.StatusCode == 200 {
+			fmt.Println("Fetching", url)
+			body, _ := io.ReadAll(resp.Body)
+			filePath := filepath.Join(folderLocation, fmt.Sprintf("%s_%s_%s_%s_%s", day, month, year, radar, timeComb))
+			os.WriteFile(filePath, body, 0644)
+		}
+
+		if x == timeEnd {
+			fmt.Println("Done...")
+			return
+		}
 	}
-	fmt.Printf("read line: %s-\n", month)
-
-	fmt.Println("Enter Day: ")
-	reader1 := bufio.NewReader(os.Stdin)
-	day, err := reader1.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("read line: %s-\n", day)
-
-	fmt.Println("Enter Year: ")
-	reader2 := bufio.NewReader(os.Stdin)
-	year, err := reader2.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("read line: %s-\n", year)
-
-	fmt.Println("Enter Radar: ")
-	// TODO: Enter Scanner for user input
-	fmt.Println("Time Start in Zulu: ")
-	// TODO: Enter Scanner for user input
-	fmt.Println("Time End in Zulu: ")
-	// TODO: Enter Scanner for user input
-	// TODO: Calculate time Combined from start and end to make For loop to exit on finish
-
-	fullURLFile = "https://noaa-nexrad-level2.s3.amazonaws.com/2024/04/16/KHTX/KHTX20240416_000302_V06"
-
-	// Build fileName from fullPath
-	fileURL, err := url.Parse(fullURLFile)
-	if err != nil {
-		log.Fatal(err)
-	}
-	path := fileURL.Path
-	segments := strings.Split(path, "/")
-	fileName = segments[len(segments)-1]
-
-	// Create blank file
-	file, err := os.Create(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	client := http.Client{
-		CheckRedirect: func(r *http.Request, via []*http.Request) error {
-			r.URL.Opaque = r.URL.Path
-			return nil
-		},
-	}
-	// Put content on file
-	resp, err := client.Get(fullURLFile)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer resp.Body.Close()
-
-	size, err := io.Copy(file, resp.Body)
-
-	defer file.Close()
-
-	fmt.Printf("Downloaded a file %s with size %d", fileName, size)
-
 }
