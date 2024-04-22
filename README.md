@@ -8,7 +8,7 @@
 # About
 * An application that takes user input for the month, day, year, radar site code (KHTX - Huntsville AL for example), beginning and ending time frame that you would like radar data downloaded from the NWS level II radar archive
 * (Format goes as follows: HHMMSS) with all times needing to be in Zulu
-* *NOTE: Be sure to make the time at the top of the hour 000100 for example of 1am and the end time can be no less than two hours after the start time, I am working to fix this issue so a start time of 000100 would need a end time no less than 000300 or 3am*
+* *NOTE: Be sure to make the time at the top of the hour 000300 for example of 3am and the end time can be no less than two hours after the start time, so a start time of 000100 would need a end time no less than 000500 or 5am. I am working to fix this issue*
 
 # Installation
 
