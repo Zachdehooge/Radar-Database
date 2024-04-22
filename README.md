@@ -4,7 +4,6 @@
 
 ![Go Version](https://img.shields.io/badge/GO-1.22.2-yellow)
 [![GO Snyk Check Master](https://github.com/Zachdehooge/Radar_Database/actions/workflows/snyk.yml/badge.svg?branch=main)](https://github.com/Zachdehooge/Radar_Database/actions/workflows/snyk.yml)
-[![GO Snyk Check Dev](https://github.com/Zachdehooge/Radar_Database/actions/workflows/snyk.yml/badge.svg?branch=dev)](https://github.com/Zachdehooge/Radar_Database/actions/workflows/snyk.yml)
 
 # About
 * An application that takes user input for the month, day, year, radar site code (KHTX - Huntsville AL for example), beginning and ending time frame that you would like radar data downloaded from the NWS level II radar archive
