@@ -15,6 +15,7 @@
 
 1. Download Github repo
 2. Run `.exe` file
+3. If smartscreen comes up, click more info -> run anyway
 
 # Issues
 * Be sure to open an issue and I will be more than happy to fix it!
