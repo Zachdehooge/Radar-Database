@@ -9,7 +9,6 @@
 * An application for downloading Level II data from the NEXRAD Level II archive
 * Takes user input for the month, day, year, radar site code (KHTX - Huntsville AL for example), along with beginning and ending time frames in Zulu
 * (Format for times goes as follows: HHMMSS) with all times needing to be in Zulu
-* *NOTE: Be sure to make the time at the top of the hour 000300 for example of 3am and the end time can be no less than two hours after the start time, so a start time of 000300 or 3am would need a end time no less than 000500 or 5am. I am working to fix this issue*
 
 # Installation
 
