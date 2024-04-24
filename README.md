@@ -16,6 +16,11 @@
 2. Run `.exe` file
 3. If smartscreen comes up, click more info -> run anyway // this warning is entirely harmless and only shows because the app is not signed
 
+# Docker Installation
+1. Make sure Docker is installed, you are signed into Docker, open a command line, and do `docker login`
+2. Then run `docker pull zachdehooge/radar-database`
+3. Run `docker run -i zachdehooge/radar-database`
+
 # Issues
 * Be sure to open an issue and I will be more than happy to fix it!
 
