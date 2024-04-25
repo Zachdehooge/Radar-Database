@@ -7,7 +7,6 @@ COPY go.sum ./
 
 RUN go mod download
 
-
 COPY *.go ./
 
 RUN go build -o /github.com/zachdehooge/radar_database
