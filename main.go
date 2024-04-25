@@ -26,9 +26,18 @@ func main() {
 
 	fmt.Print("Enter Month: ")
 	fmt.Scanln(&month)
+	num1, _ := strconv.Atoi(month)
+	if num1 < 10 {
+		month = fmt.Sprintf("%02d", num1)
+	}
+	fmt.Println(month)
 
 	fmt.Print("Enter Day: ")
 	fmt.Scanln(&day)
+	num2, _ := strconv.Atoi(day)
+	if num2 < 10 {
+		day = fmt.Sprintf("%02d", num2)
+	}
 
 	fmt.Print("Enter Year: ")
 	fmt.Scanln(&year)
@@ -39,12 +48,12 @@ func main() {
 	fmt.Print("Time Start in Zulu (HHMMSS): ")
 	fmt.Scanln(&timeStart)
 	// Fixed octal issue by dereferencing the pointer and converting to integer from string that is passed to the CLI
-	test := *&timeStart
+	test := timeStart
 	test1, _ := strconv.Atoi(test)
 
 	fmt.Print("Time End in Zulu (HHMMSS): ")
 	fmt.Scanln(&timeEnd)
-	test3 := *&timeEnd
+	test3 := timeEnd
 	test4, _ := strconv.Atoi(test3)
 
 	for x := test1; x <= test4; x++ {
@@ -53,7 +62,7 @@ func main() {
 
 		url := fmt.Sprintf("https://noaa-nexrad-level2.s3.amazonaws.com/%s/%s/%s/%s/%s%s%s%s_%s_V06", year, month, day, radar, radar, year, month, day, timeComb)
 
-		folderLocation := fmt.Sprintf("C:\\Coding Projects\\Go\\Radar_Database\\%s_%s_%s_%s", day, month, year, radar)
+		folderLocation := fmt.Sprintf(".\\%s_%s_%s_%s", day, month, year, radar)
 		if _, err := os.Stat(folderLocation); os.IsNotExist(err) {
 			os.MkdirAll(folderLocation, 0755)
 		}
