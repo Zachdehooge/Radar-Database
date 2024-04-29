@@ -15,15 +15,15 @@
 1. Download Github repo
 2. Run `.exe` file
 3. If smartscreen comes up, click more info -> run anyway // this warning is entirely harmless and only shows because the app is not signed
-<!--
+
 # Docker Installation
 1. Make sure Docker is installed
 2. Sign into Docker
 3. Open a command line prompt
 4. Run `docker login`
 5. Run `docker pull zachdehooge/radar-database`
-6. Run `docker run -i zachdehooge/radar-database`
--->
+6. Run `docker run -it --rm -v .:/app zachdehooge/radar-database`
+
 # Issues
 * Be sure to open an issue and I will be more than happy to fix it!
 
