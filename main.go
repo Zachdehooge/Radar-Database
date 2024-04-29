@@ -23,6 +23,7 @@ func main() {
 
 	var month, day, year, radar string
 	var timeStart, timeEnd string
+	//var fullDay string
 
 	fmt.Print("Enter Month: ")
 	fmt.Scanln(&month)
@@ -30,7 +31,6 @@ func main() {
 	if num1 < 10 {
 		month = fmt.Sprintf("%02d", num1)
 	}
-	fmt.Println(month)
 
 	fmt.Print("Enter Day: ")
 	fmt.Scanln(&day)
@@ -44,6 +44,27 @@ func main() {
 
 	fmt.Print("Enter Radar: ")
 	fmt.Scanln(&radar)
+
+	// TODO: Have user prompted with Full day download
+	// TODO: Handle if else where y timeStart and timeEnd are 000000 and 235959 respectively for y (yes) and continue prompts for user as normal if no or anything other than y (yes)
+	/* 	fmt.Print("Download Full Day?[y/n]")
+	   	fmt.Scanln(&fullDay)
+	   	fullDay1 := strings.ToLower(fullDay)
+	   	if fullDay1 == "y" {
+	   		timeStart = "000000"
+	   		timeEnd = "000000"
+	   	} else {
+	   		fmt.Print("Time Start in Zulu (HHMMSS): ")
+	   		fmt.Scanln(&timeStart)
+	   		// Fixed octal issue by dereferencing the pointer and converting to integer from string that is passed to the CLI
+	   		test := timeStart
+	   		timeStart = strconv.Atoi(timeStart)
+
+	   		fmt.Print("Time End in Zulu (HHMMSS): ")
+	   		fmt.Scanln(&timeEnd)
+	   		test3 := timeEnd
+	   		test4, _ := strconv.Atoi(test3)
+	   	} */
 
 	fmt.Print("Time Start in Zulu (HHMMSS): ")
 	fmt.Scanln(&timeStart)
@@ -62,22 +83,23 @@ func main() {
 
 		url := fmt.Sprintf("https://noaa-nexrad-level2.s3.amazonaws.com/%s/%s/%s/%s/%s%s%s%s_%s_V06", year, month, day, radar, radar, year, month, day, timeComb)
 
-		folderLocation := fmt.Sprintf(".\\%s_%s_%s_%s", day, month, year, radar)
+		folderLocation := fmt.Sprintf("%s_%s_%s_%s", day, month, year, radar)
 		if _, err := os.Stat(folderLocation); os.IsNotExist(err) {
 			os.MkdirAll(folderLocation, 0755)
 		}
 
 		resp, err := http.Get(url)
 		if err == nil && resp.StatusCode == 200 {
-			fmt.Println("(+) FETCHING", url)
+			fmt.Println("(+) FETCHING", url, folderLocation)
 			body, _ := io.ReadAll(resp.Body)
 			filePath := filepath.Join(folderLocation, fmt.Sprintf("%s_%s_%s_%s_%s", day, month, year, radar, timeComb))
 			os.WriteFile(filePath, body, 0644)
 		}
 
-		if err == nil && resp.StatusCode != 200 {
+		// ! Uncomment for Debugging file download
+		/* if err == nil && resp.StatusCode != 200 {
 			fmt.Println("(-) CANNOT FETCH", url, resp.StatusCode)
-		}
+		} */
 
 		if x == test4 {
 			fmt.Println("Done...")
