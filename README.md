@@ -45,6 +45,6 @@
 
 ### Done ✓
 
-- [ ]
+- - [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/34">Issue #34</a>
 
 <!-- Enter [x] when done with a TODO-->
