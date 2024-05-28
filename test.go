@@ -7,22 +7,10 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
-	"time"
 )
 
-func exeTime(name string) func() {
-	start := time.Now()
-	return func() {
-		fmt.Printf("%s execution time: %v\n", name, time.Since(start))
-	}
-}
-
-func main() {
-
-	defer exeTime("main")()
-
-	var month, day, year, radar string
-	var timeStart, timeEnd string
+func getMonth() int {
+	var month string
 
 	fmt.Print("Enter Month: ")
 	fmt.Scanln(&month)
@@ -31,6 +19,12 @@ func main() {
 		month = fmt.Sprintf("%02d", num1)
 	}
 
+	return num1
+}
+
+func getDay() int {
+	var day string
+
 	fmt.Print("Enter Day: ")
 	fmt.Scanln(&day)
 	num2, _ := strconv.Atoi(day)
@@ -38,20 +32,51 @@ func main() {
 		day = fmt.Sprintf("%02d", num2)
 	}
 
+	return num2
+}
+
+func getYear() string {
+	var year string
+
 	fmt.Print("Enter Year: ")
 	fmt.Scanln(&year)
+
+	return year
+}
+
+func getRadar() string {
+	var radar string
 
 	fmt.Print("Enter Radar: ")
 	fmt.Scanln(&radar)
 
+	return radar
+}
+
+func getTimeStart() string {
+	var timeStart string
+
 	fmt.Print("Time Start in Zulu (HHMMSS): ")
 	fmt.Scanln(&timeStart)
+
 	test := timeStart
-	test1, _ := strconv.Atoi(test)
+
+	return test
+}
+
+func getTimeEnd() string {
+	var timeEnd string
 
 	fmt.Print("Time End in Zulu (HHMMSS): ")
 	fmt.Scanln(&timeEnd)
 	test3 := timeEnd
+
+	return test3
+}
+
+func testing(test, test3, month, day string, year, radar string) {
+
+	test1, _ := strconv.Atoi(test)
 	test4, _ := strconv.Atoi(test3)
 
 	for x := test1; x <= test4; x++ {
@@ -96,17 +121,30 @@ func main() {
 		}
 
 		// ! Uncomment for Debugging file download
-		/* if err == nil && resp.StatusCode != 200 {
-			fmt.Println("(-) CANNOT FETCH", url, resp.StatusCode)
-		} */
-
 		if err == nil && resp.StatusCode != 200 {
-			fmt.Println("(-) CANNOT FETCH .GZ", url2, resp2.StatusCode)
+			fmt.Println("(-) CANNOT FETCH", url, resp.StatusCode)
 		}
+
+		/* if err == nil && resp.StatusCode != 200 {
+			fmt.Println("(-) CANNOT FETCH .GZ", url2, resp2.StatusCode)
+		}*/
 
 		if x == test4 {
 			fmt.Println("Done...")
 			return
 		}
 	}
+}
+
+func main() {
+
+	/* fmt.Printf("Month: %d \n", getMonth())
+	fmt.Printf("Test1: %d\n", getTimeStart())
+	fmt.Printf("Test4: %d\n", getTimeEnd())
+	fmt.Printf("Day: %d\n", getDay())
+	fmt.Printf("Year: %d\n", getYear())
+	fmt.Printf("Radar: %d\n", getRadar()) */
+
+	go testing("000000", "000100", "05", "20", "2024", "KHTX")
+	// TODO: Test main testing func for why time start and time end are not being carried over as intended
 }
