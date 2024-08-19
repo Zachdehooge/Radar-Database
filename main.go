@@ -75,7 +75,6 @@ func main() {
 		url2 := fmt.Sprintf("https://noaa-nexrad-level2.s3.amazonaws.com/%s/%s/%s/%s/%s%s%s%s_%s_%s.gz", year, month, day, radar, radar, year, month, day, timeComb, end)
 
 		folderLocation := fmt.Sprintf("%s_%s_%s_%s", day, month, year, radar)
-		if _, err := os.Stat(folderLocation); os.IsNotExist(err) {
 			os.MkdirAll(folderLocation, 0755)
 		}
 
@@ -98,12 +97,12 @@ func main() {
 		// ! Uncomment for Debugging file download
 		/* if err == nil && resp.StatusCode != 200 {
 			fmt.Println("(-) CANNOT FETCH", url, resp.StatusCode)
-		} */
+		}
 
 		if err == nil && resp.StatusCode != 200 {
 			fmt.Println("(-) CANNOT FETCH .GZ", url2, resp2.StatusCode)
 		}
-
+		*/
 		if x == test4 {
 			fmt.Println("Done...")
 			return
