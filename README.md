@@ -34,7 +34,6 @@
 
 # TODO
 
-- [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/5">Issue #5</a>
 - [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/6">Issue #6</a>
 - [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/7">Issue #7</a>
 - [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/8">Issue #8</a>
@@ -42,7 +41,7 @@
 
 ### In Progress
 
-- [ ] 
+- [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/5">Issue #5</a>
 
 ### Done ✓
 
