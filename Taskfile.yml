@@ -1,0 +1,15 @@
+version: "3"
+
+tasks:
+  build:
+    desc: Builds The GO Binary
+    cmds:
+      - go build -o main main.go
+  run:
+    desc: Runs The GO Application
+    cmds:
+      - go run main.go
+  test:
+    desc: Runs Tests For Application
+    cmds:
+      - go test ./...
