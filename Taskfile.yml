@@ -1,7 +1,7 @@
 version: "3"
 
 tasks:
-  default:
+  run:
     desc: Runs the GO application
     cmds: 
       - go run cmd/main.go
