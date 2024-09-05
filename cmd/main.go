@@ -17,46 +17,7 @@ func exeTime(name string) func() {
 	}
 }
 
-func main() {
-
-	defer exeTime("main")()
-
-	var month, day, year, radar, filePathFolder string
-	var timeStart, timeEnd string
-
-	fmt.Print("Enter Month: ")
-	fmt.Scanln(&month)
-	num1, _ := strconv.Atoi(month)
-	if num1 < 10 {
-		month = fmt.Sprintf("%02d", num1)
-	}
-
-	fmt.Print("Enter Day: ")
-	fmt.Scanln(&day)
-	num2, _ := strconv.Atoi(day)
-	if num2 < 10 {
-		day = fmt.Sprintf("%02d", num2)
-	}
-
-	fmt.Print("Enter Year: ")
-	fmt.Scanln(&year)
-
-	fmt.Print("Enter Radar: ")
-	fmt.Scanln(&radar)
-
-	fmt.Print("Folder Location (Paste directory path without the ending \"\\\" (C:\\Test)): ")
-	fmt.Scanln(&filePathFolder)
-
-	fmt.Print("Time Start in Zulu (HHMMSS): ")
-	fmt.Scanln(&timeStart)
-	test := timeStart
-	test1, _ := strconv.Atoi(test)
-
-	fmt.Print("Time End in Zulu (HHMMSS): ")
-	fmt.Scanln(&timeEnd)
-	test3 := timeEnd
-	test4, _ := strconv.Atoi(test3)
-
+func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
 	for x := test1; x <= test4; x++ {
 
 		var end string
@@ -115,4 +76,57 @@ func main() {
 			return
 		}
 	}
+}
+
+func main() {
+
+	defer exeTime("main")()
+
+	var month, day, year, radar, filePathFolder string
+	var timeStart, timeEnd string
+
+	fmt.Print("Enter Month: ")
+	fmt.Scanln(&month)
+	num1, _ := strconv.Atoi(month)
+	if num1 < 10 {
+		month = fmt.Sprintf("%02d", num1)
+	}
+
+	fmt.Print("Enter Day: ")
+	fmt.Scanln(&day)
+	num2, _ := strconv.Atoi(day)
+	if num2 < 10 {
+		day = fmt.Sprintf("%02d", num2)
+	}
+
+	fmt.Print("Enter Year: ")
+	fmt.Scanln(&year)
+
+	fmt.Print("Enter Radar: ")
+	fmt.Scanln(&radar)
+
+	fmt.Print("Folder Location (Paste directory path without the ending \"\\\" (C:\\Test)): ")
+	fmt.Scanln(&filePathFolder)
+
+	fmt.Print("Time Start in Zulu (HHMMSS)(Push Enter to Default to 000000): ")
+	var test1 int
+	if timeStart != "" {
+		test := timeStart
+		test1, _ = strconv.Atoi(test)
+	} else {
+		test := "000000"
+		test1, _ = strconv.Atoi(test)
+	}
+
+	fmt.Print("Time End in Zulu (HHMMSS)(Push Enter to Default to 235959): ")
+	var test4 int
+	if timeEnd != "" {
+		test3 := timeEnd
+		test4, _ = strconv.Atoi(test3)
+	} else {
+		test3 := "235959"
+		test4, _ = strconv.Atoi(test3)
+	}
+
+	work(month, day, year, radar, filePathFolder, test1, test4)
 }

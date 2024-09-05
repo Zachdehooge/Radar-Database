@@ -20,3 +20,11 @@ func TestInput(t *testing.T) {
 	}
 	t.Logf("You entered: %s\n", name)
 }
+func TestHello(t *testing.T) {
+	got := "Hello, world"
+	want := "Hello, world"
+
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
+	}
+}
