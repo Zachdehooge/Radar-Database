@@ -30,7 +30,6 @@ jobs:
   security:
     name: GO Snyk Check
     permissions: write-all
-    if: ${{ !github.event.act }}
     runs-on: ubuntu-latest
     needs: build
     steps:
