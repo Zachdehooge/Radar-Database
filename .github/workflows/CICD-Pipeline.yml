@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build Job
-    runs-on: ubuntu-latest
+    runs-on: golang:latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
