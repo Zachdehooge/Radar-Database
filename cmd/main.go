@@ -63,14 +63,14 @@ func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
 		}
 
 		// ! Uncomment for Debugging file download
-		/* if err == nil && resp.StatusCode != 200 {
+		if err == nil && resp.StatusCode != 200 {
 			fmt.Println("(-) CANNOT FETCH", url, resp.StatusCode)
 		}
 
-		if err == nil && resp.StatusCode != 200 {
+		/* 		if err == nil && resp.StatusCode != 200 {
 			fmt.Println("(-) CANNOT FETCH .GZ", url2, resp2.StatusCode)
-		}
-		*/
+		} */
+
 		if x == test4 {
 			fmt.Println("Done...")
 			return
@@ -84,6 +84,7 @@ func main() {
 
 	var month, day, year, radar, filePathFolder string
 	var timeStart, timeEnd string
+	var test1, test4 int
 
 	fmt.Print("Enter Month: ")
 	fmt.Scanln(&month)
@@ -109,7 +110,7 @@ func main() {
 	fmt.Scanln(&filePathFolder)
 
 	fmt.Print("Time Start in Zulu (HHMMSS)(Push Enter to Default to 000000): ")
-	var test1 int
+	fmt.Scanln(&timeStart)
 	if timeStart != "" {
 		test := timeStart
 		test1, _ = strconv.Atoi(test)
@@ -119,7 +120,7 @@ func main() {
 	}
 
 	fmt.Print("Time End in Zulu (HHMMSS)(Push Enter to Default to 235959): ")
-	var test4 int
+	fmt.Scanln(&timeEnd)
 	if timeEnd != "" {
 		test3 := timeEnd
 		test4, _ = strconv.Atoi(test3)

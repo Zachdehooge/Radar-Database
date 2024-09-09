@@ -1,30 +1,14 @@
 package main
 
 import (
-	"bufio"
-	"strings"
 	"testing"
 )
 
-func TestInput(t *testing.T) {
-	input := strings.NewReader("jane")
-	scanner := bufio.NewScanner(input)
+func Testmain(t *testing.T) {
+	work("12", "20", "2020", "KHTX", "", 000212, 000212)
+	want := "(+) FETCHING https://noaa-nexrad-level2.s3.amazonaws.com/2020/12/20/KHTX/KHTX20201220_000212_V06"
 
-	scanner.Scan()
-	if err := scanner.Err(); err != nil {
-		t.Fatal(err)
-	}
-	name := scanner.Text()
-	if len(name) == 0 {
-		t.Log("empty input")
-	}
-	t.Logf("You entered: %s\n", name)
-}
-func TestHello(t *testing.T) {
-	got := "Hello, world"
-	want := "Hello, world"
-
-	if got != want {
-		t.Errorf("got %q want %q", got, want)
+	if expected != want {
+		t.Errorf("got %q want %q", expected, want)
 	}
 }
