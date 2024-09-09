@@ -17,6 +17,7 @@ func exeTime(name string) func() {
 	}
 }
 
+// TODO: Look into work returning a string value to solve testing issue when assigning work as a seperate value to evaluate (main_test.go)
 func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
 	for x := test1; x <= test4; x++ {
 
