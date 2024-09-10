@@ -34,7 +34,7 @@ jobs:
           COPY *.go /app
           COPY . .
           RUN go mod download
-          RUN cd cmd && go build -o /github.com/zachdehooge/radar_database
+          RUN go build -o /github.com/zachdehooge/radar_database
           CMD [ "/github.com/zachdehooge/radar_database" ]
           
           echo "Docker Build complete."
