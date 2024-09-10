@@ -17,6 +17,8 @@ func exeTime(name string) func() {
 	}
 }
 
+// TODO: Handle user file path input and have radar data populate that folder, rather than the folder outside of it
+
 func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
 	for x := test1; x <= test4; x++ {
 
