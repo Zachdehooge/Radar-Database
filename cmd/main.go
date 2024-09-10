@@ -104,8 +104,8 @@ func main() {
 	fmt.Print("Enter Radar: ")
 	fmt.Scanln(&radar)
 
-	fmt.Print("Folder Location: ")
-	fmt.Scanln(&filePathFolder)
+	/* 	fmt.Print("Folder Location: ")
+	   	fmt.Scanln(&filePathFolder) */
 
 	fmt.Print("Time Start in Zulu (HHMMSS)(Push Enter to Default to 000000): ")
 	fmt.Scanln(&timeStart)
