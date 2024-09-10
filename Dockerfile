@@ -6,8 +6,8 @@ COPY *.go /app
 
 COPY . .
 
-RUN go mod download
+RUN go mod download 
 
-RUN cd cmd && go build -o /github.com/zachdehooge/radar_database
+RUN cd cmd && go build -o /zachdehooge/radar-database
 
-CMD [ "/github.com/zachdehooge/radar_database" ]
+CMD [ "/github.com/zachdehooge/radar-database" ]

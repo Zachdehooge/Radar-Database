@@ -40,13 +40,9 @@ func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
 
 		url2 := fmt.Sprintf("https://noaa-nexrad-level2.s3.amazonaws.com/%s/%s/%s/%s/%s%s%s%s_%s_%s.gz", year, month, day, radar, radar, year, month, day, timeComb, end)
 
-		if filePathFolder != "" {
-			filePathFolder := fmt.Sprintf("%s\\%s_%s_%s_%s", filePathFolder, day, month, year, radar)
-			os.MkdirAll(filePathFolder, 0755)
-		} else {
-			filePathFolder := fmt.Sprintf("%s_%s_%s_%s", day, month, year, radar)
-			os.MkdirAll(filePathFolder, 0755)
-		}
+		//TODO: Handle blank input to evaluate in current working directory (IF STATEMENT)
+		filePathFolder := fmt.Sprintf("./%s_%s_%s_%s", day, month, year, radar)
+		os.MkdirAll(filePathFolder, 0755)
 
 		resp, err := http.Get(url)
 		if err == nil && resp.StatusCode == 200 {
@@ -108,7 +104,7 @@ func main() {
 	fmt.Print("Enter Radar: ")
 	fmt.Scanln(&radar)
 
-	fmt.Print("Folder Location (Paste directory path without the ending \"\\\" (C:\\Test)): ")
+	fmt.Print("Folder Location: ")
 	fmt.Scanln(&filePathFolder)
 
 	fmt.Print("Time Start in Zulu (HHMMSS)(Push Enter to Default to 000000): ")
