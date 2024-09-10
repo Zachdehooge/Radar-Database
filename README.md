@@ -12,11 +12,11 @@
 * Takes user input for the month, day, year, radar site code (KHTX - Huntsville AL for example), along with beginning and ending time frames in Zulu
 * (Format for times goes as follows: HHMMSS) with all times needing to be in Zulu
 
-## Installation
+<!--## Installation
 
 1. Download Github repo
 2. Run `.exe` file
-3. If smartscreen comes up, click more info -> run anyway // this warning is entirely harmless and only shows because the app is not signed
+3. If smartscreen comes up, click more info -> run anyway // this warning is entirely harmless and only shows because the app is not signed-->
 
 ## Docker Installation
 1. Make sure Docker is installed
