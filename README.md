@@ -34,19 +34,16 @@
 2. More to come...
 
 # TODO
-
-- [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/5">Issue #5</a>
-- [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/6">Issue #6</a>
 - [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/7">Issue #7</a>
-- [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/8">Issue #8</a>
 - [ ] <a href="https://github.com/Zachdehooge/Radar-Database/issues/11">Issue #11</a>
-
 ### In Progress
 
 - [ ] 
 
 ### Done ✓
-
-- - [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/34">Issue #34</a>
+- [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/5">Issue #5</a>
+- [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/6">Issue #6</a>
+- [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/8">Issue #8</a>
+- [x] <a href="https://github.com/Zachdehooge/Radar-Database/issues/34">Issue #34</a>
 
 <!-- Enter [x] when done with a TODO-->
