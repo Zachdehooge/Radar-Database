@@ -8,6 +8,6 @@ COPY . .
 
 RUN go mod download 
 
-RUN go build -o /zachdehooge/radar-database
+RUN go build -o /github.com/zachdehooge/radar-database
 
 CMD [ "/github.com/zachdehooge/radar-database" ]
