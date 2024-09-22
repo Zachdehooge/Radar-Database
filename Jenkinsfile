@@ -31,20 +31,12 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
                     {
                     // Setting up Docker
-                    sh 'docker version'
-
-                    // Set up Docker image tag
-                    def tag = "latest"
-                    if (env.GIT_BRANCH == "main") {
-                        if (env.GIT_TAG_NAME) {
-                            tag = env.GIT_TAG_NAME
-                        }
-                    }
+                    sh 'docker version'                
                     
                     sh "docker login -u ${env.DOCKERID_USR} -p ${env.DOCKERID_PSW}"
                     
                     // Build Docker image
-                    sh "docker build -t ${env.DOCKERID_USR}/radar-database:${tag} ."
+                    sh "docker build -t ${env.DOCKERID_USR}/radar-database:latest ."
 
                     // Push Docker image
                     sh "docker push ${env.DOCKERID_USR}/radar-database:${tag}" 
