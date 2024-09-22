@@ -1,7 +1,6 @@
 pipeline {
     agent any
-    tools { go '1.23.1' }
-    tools {docker latest}
+    tools { go '1.23.1', docker }
 
 // Need to have Docker and GO plugins installed on Jenkins
     stages {
