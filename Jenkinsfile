@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+    go 'go1.23.0'
+    }
 
     stages {
         
@@ -7,8 +10,8 @@ pipeline {
             steps {
                 script {
                     // Setting up Go environment
-                    def goVersion = ">=1.23.0"
-                    sh "go install go@${goVersion}"
+                    //def goVersion = ">=1.23.0"
+                    sh "go version"
                     // Running unit tests
                     sh '''
                     git clone https://github.com/Zachdehooge/Radar-Database.git
