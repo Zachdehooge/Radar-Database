@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools { go '1.23.1' }
 
+// Need to have Docker and GO plugins installed on Jenkins
     stages {
 
         stage('Unit Tests') {
@@ -29,7 +30,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
                     {
                     // Setting up Docker
-                    sh 'docker version || sudo apt-get install docker.io -y'
+                    sh 'docker version'
 
                     // Set up Docker image tag
                     def tag = "latest"
