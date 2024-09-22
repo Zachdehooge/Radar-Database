@@ -7,18 +7,14 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        # Download Go
-                        wget https://go.dev/dl/go1.20.7.linux-amd64.tar.gz
-                        
-                        # Extract the archive to /usr/local
-                        sudo tar -C /usr/local -xzf go1.20.7.linux-amd64.tar.gz
-                        
-                        # Set Go environment variables
-                        echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
-                        source ~/.bashrc
-                        
-                        # Verify installation
-                        go version
+                    # Update package lists
+                    sudo apt-get update
+                    
+                    # Install Golang
+                    sudo apt-get -y install golang-go
+                    
+                    # Verify installation
+                    go version
                     '''
                 }
             }
