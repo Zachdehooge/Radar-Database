@@ -25,6 +25,7 @@ pipeline {
             }
         }
 
+        // TODO: DOCKER DAEMON NEEDS FIXING
         /* stage('Docker Deploy') {
             steps {
                 script {
