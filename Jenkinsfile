@@ -12,14 +12,11 @@ pipeline {
                     GO_TAR_FILE="go${GO_VERSION}.linux-amd64.tar.gz"
                     GO_DOWNLOAD_URL="https://go.dev/dl/$GO_TAR_FILE"
                     
-                    # Remove any existing Go installation
-                    sudo rm -rf /usr/local/go
-                    
                     # Download the Go tarball
                     curl -O $GO_DOWNLOAD_URL
                     
                     # Extract the Go tarball to /usr/local
-                    sudo tar -C /usr/local -xzf $GO_TAR_FILE
+                    tar -C /usr/local -xzf $GO_TAR_FILE
                     
                     # Set Go binary path
                     echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
