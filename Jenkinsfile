@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Docker Deploy') {
+        /* stage('Docker Deploy') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
@@ -44,7 +44,7 @@ pipeline {
                 }
             }
         }
-    }
+    } */
     post {
         always {
             cleanWs()
