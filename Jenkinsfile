@@ -5,17 +5,33 @@ pipeline {
         
         stage('Install Golang') {
             steps {
-                script {
-                    sh '''
-                    curl -OL https://go.dev/dl/go1.21.1.linux-amd64.tar.gz 
-                    tar -C $HOME -xzf go1.21.1.linux-amd64.tar.gz 
-					echo "export PATH=\$PATH:$HOME/go/bin" >> ~/.profile 
-                    /bin/bash
-                    go -version
-                    '''
+                script{
+                sh '''
+                    # Define Go version and download URL
+                    GO_VERSION=1.20.7
+                    GO_TAR_FILE="go${GO_VERSION}.linux-amd64.tar.gz"
+                    GO_DOWNLOAD_URL="https://go.dev/dl/$GO_TAR_FILE"
+                    
+                    # Remove any existing Go installation
+                    sudo rm -rf /usr/local/go
+                    
+                    # Download the Go tarball
+                    curl -O $GO_DOWNLOAD_URL
+                    
+                    # Extract the Go tarball to /usr/local
+                    sudo tar -C /usr/local -xzf $GO_TAR_FILE
+                    
+                    # Set Go binary path
+                    echo "export PATH=\$PATH:/usr/local/go/bin" >> ~/.bashrc
+                    source ~/.bashrc
+                    
+                    # Verify installation
+                    go version
+                '''
                 }
             }
         }
+
         stage('Unit Tests') {
             steps {
                 script {
