@@ -8,7 +8,7 @@ pipeline {
                 script {
                     // Setting up Go environment
                     def goVersion = ">=1.23.0"
-                    sh "go version || go install go@${goVersion}"
+                    sh "go install go@${goVersion}"
                     // Running unit tests
                     sh '''
                     git clone https://github.com/Zachdehooge/Radar-Database.git
