@@ -27,7 +27,6 @@ pipeline {
 
         stage('Docker Deploy') {
             steps {
-                agent any
                 script {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
                     {
