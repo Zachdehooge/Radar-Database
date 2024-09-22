@@ -8,10 +8,10 @@ pipeline {
                 script {
                     sh '''
                     # Update package lists
-                    sudo apt-get update
+                    apt-get update
                     
                     # Install Golang
-                    sudo apt-get -y install golang-go
+                    apt-get -y install golang-go
                     
                     # Verify installation
                     go version
