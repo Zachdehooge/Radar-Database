@@ -24,6 +24,7 @@ jobs:
 
   snyk_security:
     name: GO Snyk Check
+    if: always()
     permissions: write-all
     runs-on: ubuntu-latest
     needs: go_security
