@@ -9,10 +9,25 @@ on:
       - main
 
 jobs:
-  security:
+  go_security:
+    name: GO Security Check
+    permissions: write-all
+    runs-on: ubuntu-latest
+    env:
+      GO111MODULE: on
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v3
+    - name: Run Gosec Security Scanner
+      uses: securego/gosec@master
+      with:
+        args: ./...
+
+  snyk_security:
     name: GO Snyk Check
     permissions: write-all
     runs-on: ubuntu-latest
+    needs: go_security
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
@@ -30,7 +45,7 @@ jobs:
   test:
     name: Unit Tests
     runs-on: ubuntu-latest
-    needs: security
+    needs: snyk_security
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
