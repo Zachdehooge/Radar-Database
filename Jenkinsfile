@@ -34,7 +34,7 @@ pipeline {
                     // Setting up Docker
                     sh 'docker version'    
 
-                    sh systemctl status docker            
+                    sh 'systemctl status docker'   
                     
                     sh "docker login -u ${env.DOCKERID_USR} -p ${env.DOCKERID_PSW}"
                     
