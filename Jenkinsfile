@@ -31,10 +31,10 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
                     {
+                    sh 'systemctl status docker' 
+                    
                     // Setting up Docker
-                    sh 'docker version'    
-
-                    sh 'systemctl status docker'   
+                    sh 'docker version'      
                     
                     sh "docker login -u ${env.DOCKERID_USR} -p ${env.DOCKERID_PSW}"
                     
