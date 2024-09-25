@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    tools { go '1.23.1' 
-            dockerTool "Docker"}
+    tools { go '1.23.1'
+            dockerTool "Docker" }
 
 // Need to have Docker and GO plugins installed on Jenkins
     stages {
@@ -29,11 +29,18 @@ pipeline {
          stage('Docker Deploy') {
             steps {
                 script {
-                    docker.image('maven:3.3.3-jdk-8').inside {
-                    git '…your-sources…'
-                    sh '''
-                    echo "Hello From Pipeline Docker
-                    '''
+                    withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
+                    {
+                    // Setting up Docker
+                    sh 'docker version'      
+                    
+                    sh "docker login -u ${env.DOCKERID_USR} -p ${env.DOCKERID_PSW}"
+                    
+                    // Build Docker image
+                    sh "docker build -t ${env.DOCKERID_USR}/radar-database:latest ."
+
+                    // Push Docker image
+                    sh "docker push ${env.DOCKERID_USR}/radar-database:${tag}" 
                     }
                 }
             }
