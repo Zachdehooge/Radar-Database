@@ -32,7 +32,9 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
                     {
                     // Setting up Docker
-                    sh 'docker version'                
+                    sh 'docker version'    
+
+                    sh systemctl status docker            
                     
                     sh "docker login -u ${env.DOCKERID_USR} -p ${env.DOCKERID_PSW}"
                     
