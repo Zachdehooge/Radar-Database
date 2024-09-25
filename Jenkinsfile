@@ -26,7 +26,7 @@ pipeline {
         }
 
         // TODO: DOCKER DAEMON NEEDS FIXING
-        /* stage('Docker Deploy') {
+         stage('Docker Deploy') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'DOCKERID', passwordVariable: 'DOCKERID_PSW', usernameVariable: 'DOCKERID_USR')]) 
@@ -41,10 +41,10 @@ pipeline {
 
                     // Push Docker image
                     sh "docker push ${env.DOCKERID_USR}/radar-database:${tag}" 
-                }
+                    }
                 }
             }
-        } */
+        }
     } 
     post {
         always {
