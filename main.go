@@ -19,8 +19,8 @@ func exeTime(name string) func() {
 
 // TODO: Handle user file path input and have radar data populate that folder, rather than the folder outside of it
 
-func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
-	for x := test1; x <= test4; x++ {
+func work(month, day, year, radar, filePathFolder string, xStart, xEnd int) {
+	for x := xStart; x <= xEnd; x++ {
 
 		var end string
 		year2 := year
@@ -69,7 +69,7 @@ func work(month, day, year, radar, filePathFolder string, test1, test4 int) {
 			fmt.Println("(-) CANNOT FETCH .GZ", url2, resp2.StatusCode)
 		} */
 
-		if x == test4 {
+		if x == xEnd {
 			fmt.Println("Done...")
 			return
 		}
@@ -82,7 +82,7 @@ func main() {
 
 	var month, day, year, radar, filePathFolder string
 	var timeStart, timeEnd string
-	var test1, test4 int
+	var xStart, xEnd int
 
 	fmt.Print("Enter Month: ")
 	fmt.Scanln(&month)
@@ -111,21 +111,21 @@ func main() {
 	fmt.Scanln(&timeStart)
 	if timeStart != "" {
 		test := timeStart
-		test1, _ = strconv.Atoi(test)
+		xStart, _ = strconv.Atoi(test)
 	} else {
 		test := "000000"
-		test1, _ = strconv.Atoi(test)
+		xStart, _ = strconv.Atoi(test)
 	}
 
 	fmt.Print("Time End in Zulu (HHMMSS)(Push Enter to Default to 235959): ")
 	fmt.Scanln(&timeEnd)
 	if timeEnd != "" {
 		test3 := timeEnd
-		test4, _ = strconv.Atoi(test3)
+		xEnd, _ = strconv.Atoi(test3)
 	} else {
 		test3 := "235959"
-		test4, _ = strconv.Atoi(test3)
+		xEnd, _ = strconv.Atoi(test3)
 	}
 
-	work(month, day, year, radar, filePathFolder, test1, test4)
+	work(month, day, year, radar, filePathFolder, xStart, xEnd)
 }
