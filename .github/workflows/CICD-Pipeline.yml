@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/golang@master
-        continue-on-error: true # To make sure that SARIF upload gets called
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -89,7 +89,7 @@ jobs:
           else
             echo "::set-output name=tag::latest"
           fi
-          
+
       # Build Docker Image
       - name: Build Docker image
         run: |
