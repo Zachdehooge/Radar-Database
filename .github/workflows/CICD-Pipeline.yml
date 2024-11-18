@@ -43,8 +43,17 @@ jobs:
       - name: Run unit tests
         run: |
           echo "Running unit tests..."
+          go mod download
           go test main_test.go
           echo "Unit Tests Complete"
+
+      - name: Go Coverage
+        run: go test -coverprofile=coverage.txt
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   lint:
     name: Lint Test
