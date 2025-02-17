@@ -2,10 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"net/http"
-	"os"
-	"path/filepath"
 	"strconv"
 	"testing"
 )
@@ -14,7 +11,7 @@ import (
 
 func mainTesting() int {
 
-	var month, day, year, radar, filePathFolder string
+	var month, day, year, radar string
 	var test1, test4 int
 
 	month = "12"
@@ -31,7 +28,6 @@ func mainTesting() int {
 
 	year = "2020"
 	radar = "KHTX"
-	filePathFolder = "/home/zach/Coding/go/Radar-Database/cmd"
 
 	test := "000212"
 	test1, _ = strconv.Atoi(test)
@@ -59,42 +55,14 @@ func mainTesting() int {
 
 		url2 := fmt.Sprintf("https://noaa-nexrad-level2.s3.amazonaws.com/%s/%s/%s/%s/%s%s%s%s_%s_%s.gz", year, month, day, radar, radar, year, month, day, timeComb, end)
 
-		if filePathFolder != "" {
-			filePathFolder := fmt.Sprintf("%s\\%s_%s_%s_%s", filePathFolder, day, month, year, radar)
-			os.MkdirAll(filePathFolder, 0755)
-		} else {
-			filePathFolder := fmt.Sprintf("%s_%s_%s_%s", day, month, year, radar)
-			os.MkdirAll(filePathFolder, 0755)
-		}
-
 		resp, err := http.Get(url)
 		if err == nil && resp.StatusCode == 200 {
-			fmt.Println("(+) FETCHING", url, filePathFolder)
-			body, _ := io.ReadAll(resp.Body)
-			filePath := filepath.Join(filePathFolder, fmt.Sprintf("%s_%s_%s_%s_%s", day, month, year, radar, timeComb))
-			os.WriteFile(filePath, body, 0644)
+			fmt.Println("(+) FETCHING", url)
 		}
 
 		resp2, err := http.Get(url2)
 		if err == nil && resp2.StatusCode == 200 {
-			fmt.Println("(+) FETCHING .GZ", url2, filePathFolder)
-			body, _ := io.ReadAll(resp2.Body)
-			filePath := filepath.Join(filePathFolder, fmt.Sprintf("%s_%s_%s_%s_%s", day, month, year, radar, timeComb))
-			os.WriteFile(filePath, body, 0644)
-		}
-
-		// ! Uncomment for Debugging file download
-		if err == nil && resp.StatusCode != 200 {
-			fmt.Println("(-) CANNOT FETCH", url, resp.StatusCode)
-			return 1
-		}
-
-		/* 		if err == nil && resp.StatusCode != 200 {
-			fmt.Println("(-) CANNOT FETCH .GZ", url2, resp2.StatusCode)
-		} */
-
-		if x == test4 {
-			fmt.Println("Done...")
+			fmt.Println("(+) FETCHING .GZ", url2)
 		}
 	}
 	return 0

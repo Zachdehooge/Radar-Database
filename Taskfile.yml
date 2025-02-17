@@ -4,12 +4,12 @@ tasks:
   run:
     desc: Runs the GO application
     cmds: 
-      - go run cmd/main.go
+      - go run main.go
   build:
     desc: Builds The GO Binary
     cmds:
-      - go build -o main cmd/main.go
+      - go build -o main main.go
   test:
     desc: Runs Tests For Application
     cmds:
-      - go test ./...
+      - go test .

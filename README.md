@@ -6,6 +6,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/zachdehooge/radar_database)](https://goreportcard.com/report/github.com/zachdehooge/radar_database)
 [![CI/CD Pipeline](https://github.com/Zachdehooge/Radar-Database/actions/workflows/CICD-Pipeline.yml/badge.svg)](https://github.com/Zachdehooge/Radar-Database/actions/workflows/CICD-Pipeline.yml)
 <!--[![GO Snyk Check Master](https://github.com/Zachdehooge/Radar_Database/actions/workflows/snyk.yml/badge.svg?branch=main)](https://github.com/Zachdehooge/Radar_Database/actions/workflows/snyk.yml)-->
+![Alt](https://repobeats.axiom.co/api/embed/593c1f4cb3a0b113e91f1675f5330631fe2926ea.svg "Repobeats analytics image")
 
 ## About
 * An application for downloading Level II data from the NEXRAD Level II archive

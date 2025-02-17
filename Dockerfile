@@ -1,4 +1,4 @@
-FROM golang:1.23.1-bookworm
+FROM golang:1.23.3-bookworm
 
 WORKDIR /app
 
@@ -8,6 +8,6 @@ COPY . .
 
 RUN go mod download 
 
-RUN go build -o /zachdehooge/radar-database
+RUN go build -o /github.com/zachdehooge/radar-database
 
 CMD [ "/github.com/zachdehooge/radar-database" ]

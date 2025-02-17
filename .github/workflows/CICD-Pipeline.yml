@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  security:
+  snyk_security:
     name: GO Snyk Check
     permissions: write-all
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/golang@master
-        continue-on-error: true # To make sure that SARIF upload gets called
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -30,7 +30,7 @@ jobs:
   test:
     name: Unit Tests
     runs-on: ubuntu-latest
-    needs: security
+    needs: snyk_security
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -43,8 +43,18 @@ jobs:
       - name: Run unit tests
         run: |
           echo "Running unit tests..."
-          go test main_test.go
+
+          go mod download
+          go test radar-database_test.go
           echo "Unit Tests Complete"
+
+      - name: Go Coverage
+        run: go test -coverprofile=coverage.txt
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   lint:
     name: Lint Test
@@ -89,7 +99,7 @@ jobs:
           else
             echo "::set-output name=tag::latest"
           fi
-          
+
       # Build Docker Image
       - name: Build Docker image
         run: |
