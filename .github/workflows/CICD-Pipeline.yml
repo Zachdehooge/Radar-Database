@@ -43,8 +43,9 @@ jobs:
       - name: Run unit tests
         run: |
           echo "Running unit tests..."
+
           go mod download
-          go test main_test.go
+          go test radar-database_test.go
           echo "Unit Tests Complete"
 
       - name: Go Coverage
