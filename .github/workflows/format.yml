@@ -1,0 +1,49 @@
+name: Go Format Code
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  format:
+    name: Format Go Code
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Setup Go
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      # Run Go formatters
+      - name: Format Go code
+        run: |
+          go install golang.org/x/tools/cmd/goimports@latest
+          go fmt ./...
+          goimports -w .
+
+      # Commit changes if any
+      - name: Check for changes
+        id: git-check
+        run: |
+          git status --porcelain
+          echo "changes=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: Commit changes
+        if: steps.git-check.outputs.changes > 0
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git commit -m "Auto-format Go code"
+          git push
