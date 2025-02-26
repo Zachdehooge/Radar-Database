@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/schollz/progressbar/v3"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
 	"time"
+
+	"github.com/charmbracelet/lipgloss"
+	"github.com/schollz/progressbar/v3"
 )
 
 // TODO: Refactor Var Names
