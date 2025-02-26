@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/schollz/progressbar/v3"
 	"io"
 	"net/http"
 	"os"
@@ -11,6 +9,9 @@ import (
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/charmbracelet/lipgloss"
+	"github.com/schollz/progressbar/v3"
 )
 
 func exeTime() func() {
