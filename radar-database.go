@@ -13,6 +13,8 @@ import (
 )
 
 // TODO: Refactor Var Names
+// TODO: Break download into two separate functions: full-day and targeted
+// TODO: Implement go routines for the two functions
 
 func exeTime() func() {
 	start := time.Now()
