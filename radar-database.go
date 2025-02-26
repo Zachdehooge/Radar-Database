@@ -13,7 +13,6 @@ import (
 )
 
 // TODO: Refactor Var Names
-// TODO: Add progress bar
 
 func exeTime() func() {
 	start := time.Now()
