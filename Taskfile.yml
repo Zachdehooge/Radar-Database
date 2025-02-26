@@ -4,12 +4,16 @@ tasks:
   run:
     desc: Runs the GO application
     cmds: 
-      - go run main.go
+      - go run radar-database.go
   build:
     desc: Builds The GO Binary
     cmds:
-      - go build -o main main.go
+      - go build -o radar-database radar-database.go
   test:
     desc: Runs Tests For Application
     cmds:
       - go test .
+  install:
+    desc: Install the go binary on the system
+    cmds:
+      - go install radar-database.go
