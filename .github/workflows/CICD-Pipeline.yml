@@ -48,6 +48,15 @@ jobs:
           go test radar-database_test.go
           echo "Unit Tests Complete"
 
+      - name: Python Hello World
+        shell: python
+        run: |
+          print("Hello World ")
+          
+      - name: Github Workspace Name
+        run: |
+          echo ${{ github.workspace }}
+
       - name: Go Coverage
         run: go test -coverprofile=coverage.txt
 
