@@ -191,7 +191,7 @@ func main() {
 	fmt.Println(lipgloss.NewStyle().
 		Bold(true).
 		Foreground(lipgloss.Color("#ff00d0")).
-		Render("Enter 1 for specific radar site or any key for city state entry): "))
+		Render("Enter 1 for specific radar site or any key for city state entry: "))
 
 	_, _ = fmt.Scanln(&choice)
 
