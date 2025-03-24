@@ -4,6 +4,7 @@ go 1.23.0
 
 require (
 	github.com/charmbracelet/lipgloss v1.0.0
+	github.com/joho/godotenv v1.5.1
 	github.com/schollz/progressbar/v3 v3.18.0
 )
 
